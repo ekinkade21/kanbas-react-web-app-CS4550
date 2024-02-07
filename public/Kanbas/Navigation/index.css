@@ -26,3 +26,9 @@
   font-size: 2em;
   margin-bottom: 5px;
 }
+.wd-kanbas-navigation a i.fa-user-circle {
+  color: white;
+}
+.wd-kanbas-navigation li.wd-active a i.fa-user-circle {
+  color: black;
+}

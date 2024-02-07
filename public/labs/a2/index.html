@@ -9,6 +9,10 @@
     <link href="index.css" rel="stylesheet" />
     <link href="/libs/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
   </head>
   <body>
     <h1>Cascading Style Sheets (CSS)</h1>
@@ -711,6 +715,16 @@
         </div>
         <button type="submit" class="btn btn-primary">Sign in</button>
       </form>
+      <h2>Overriding Bootstrap Style</h2>
+      <div class="container-fluid">
+        <button type="button" class="btn btn-primary">
+          Regular Bootstrap Button
+        </button>
+        <br />
+        <button type="button" class="btn btn-primary override-bs">
+          Overridden Bootstrap Button
+        </button>
+      </div>
       <h2>
         <a href="https://getbootstrap.com/docs/5.1/components/navs-tabs/"
           >Tabs</a
@@ -728,6 +742,18 @@
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1">Disabled</a>
+        </li>
+      </ul>
+      <h2>Pills</h2>
+      <ul class="nav nav-pills mb-2">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Bookmarks</a>
         </li>
       </ul>
       <h2>

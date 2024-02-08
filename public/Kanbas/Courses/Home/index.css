@@ -30,3 +30,7 @@
 .wd-modules > li {
   margin-bottom: 20px;
 }
+
+.collapse-horizontal .wd-kanbas-navigation a {
+  color: black;
+}

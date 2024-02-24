@@ -2,6 +2,7 @@ import ModuleList from "./List";
 function Modules() {
   return (
     <div className="flex-grow">
+      <h2>Modules</h2>
       <div className="home-buttons">
         <button>Collapse All</button>
         <button>View Progress</button>

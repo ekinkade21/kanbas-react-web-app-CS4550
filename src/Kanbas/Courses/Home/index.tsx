@@ -1,5 +1,6 @@
 import Modules from "../Modules";
 import Status from "./Status";
+import "./index.css";
 
 function Home() {
   return (
@@ -7,7 +8,7 @@ function Home() {
       <div className="flex-fill">
         <Modules />
       </div>
-      <div>
+      <div className="status-section">
         <Status />
       </div>
     </div>

@@ -1,16 +1,15 @@
-import { db} from "../../Kanbas/Database";
 import { Navigate, Route, Routes, useLocation, useParams } from "react-router-dom";
 import CourseNavigation from "./Navigation";
 import Modules from "./Modules";
 import Home from "./Home";
 import Assignments from "./Assignments";
 
-function Courses() {
+function Courses({ courses }: { courses: any[]; }) {
   const { courseId } = useParams();
   const {pathname} = useLocation();
   let parts = pathname.split("/");
   let append = parts[parts.length - 1];
-  const course = db.courses.find((course) => course._id === courseId);
+  const course = courses.find((course) => course._id === courseId);
   return (
     <>
       <nav className="d-none d-md-block" aria-label="breadcrumb">

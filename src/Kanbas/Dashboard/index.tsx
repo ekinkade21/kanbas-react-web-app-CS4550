@@ -44,10 +44,10 @@ function Dashboard({
           type="date"
           onChange={(e) => setCourse({ ...course, endDate: e.target.value })}
         />
-        <button className="btn btn-primary go-button" onClick={addNewCourse}>
+        <button className="btn btn-primary go-button" type='button' onClick={addNewCourse}>
           Add
         </button>
-        <button className="btn btn-primary edit-button" onClick={updateCourse}>
+        <button className="btn btn-primary edit-button" type='button' onClick={updateCourse}>
           Update
         </button>
       </form>

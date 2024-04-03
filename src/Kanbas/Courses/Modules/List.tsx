@@ -1,7 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addModule, deleteModule, updateModule, setModule } from "./reducer";
 import { KanbasState } from "../../store";
+import React, { useEffect, useState } from "react";
+import {
+  addModule,
+  deleteModule,
+  updateModule,
+  setModule,
+  setModules,
+} from "./reducer";
+import * as client from "./client";
 import "./index.css";
 function ModuleList() {
   const { courseId } = useParams();
@@ -12,6 +20,26 @@ function ModuleList() {
     (state: KanbasState) => state.modulesReducer.module
   );
   const dispatch = useDispatch();
+  const handleAddModule = () => {
+    client.createModule(Number(courseId), module).then((module) => {
+      dispatch(addModule(module));
+    });
+  };
+  const handleDeleteModule = (moduleId: string) => {
+    client.deleteModule(Number(moduleId)).then((status) => {
+      dispatch(deleteModule(moduleId));
+    });
+  };
+  const handleUpdateModule = async () => {
+    const status = await client.updateModule(module);
+    dispatch(updateModule(module));
+  };
+  useEffect(() => {
+    client.findModulesForCourse(courseId)
+      .then((modules) =>
+        dispatch(setModules(modules))
+    );
+  }, [courseId, dispatch]);
   return (
     <ul className="list-group">
       <li className="list-group-item">
@@ -31,13 +59,13 @@ function ModuleList() {
         />
         <button
           className="btn btn-primary edit-button"
-          onClick={() => dispatch(updateModule(module))}
+          onClick={handleUpdateModule}
         >
           Update
         </button>
         <button
           className="btn btn-primary go-button"
-          onClick={() => dispatch(addModule({ ...module, course: courseId }))}
+          onClick={handleAddModule}
         >
           Add Module
         </button>
@@ -48,8 +76,18 @@ function ModuleList() {
           <li key={index} className="list-group-item">
             <h3>{module.name}</h3>
             <p>{module.description}</p>
-            <button className="btn btn-primary edit-button" onClick={() => dispatch(setModule(module))}>Edit</button>
-            <button className="btn btn-primary delete-button" onClick={() => dispatch(deleteModule(module._id))}>Delete</button>
+            <button
+              className="btn btn-primary edit-button"
+              onClick={() => dispatch(setModule(module))}
+            >
+              Edit
+            </button>
+            <button
+              className="btn btn-primary delete-button"
+              onClick={() => handleDeleteModule(module._id)}
+            >
+              Delete
+            </button>
           </li>
         ))}
     </ul>

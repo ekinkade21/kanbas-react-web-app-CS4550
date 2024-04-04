@@ -21,12 +21,12 @@ function ModuleList() {
   );
   const dispatch = useDispatch();
   const handleAddModule = () => {
-    client.createModule(Number(courseId), module).then((module) => {
+    client.createModule(courseId, module).then((module) => {
       dispatch(addModule(module));
     });
   };
   const handleDeleteModule = (moduleId: string) => {
-    client.deleteModule(Number(moduleId)).then((status) => {
+    client.deleteModule(moduleId).then((status) => {
       dispatch(deleteModule(moduleId));
     });
   };

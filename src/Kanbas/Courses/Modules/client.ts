@@ -6,12 +6,12 @@ export const updateModule = async (module: { _id: any; }) => {
   return response.data;
 };
 
-export const deleteModule = async (moduleId: number) => {
+export const deleteModule = async (moduleId: any) => {
   const response = await axios.delete(`${MODULES_API}/${moduleId}`);
   return response.data;
 };
 
-export const createModule = async (courseId: number, module: any) => {
+export const createModule = async (courseId: any, module: any) => {
   const response = await axios.post(
     `${COURSES_API}/${courseId}/modules`,
     module

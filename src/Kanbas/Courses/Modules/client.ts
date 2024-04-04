@@ -4,12 +4,12 @@ const COURSES_API = `${API_BASE}/api/courses`;
 const MODULES_API = `${API_BASE}/api/modules`;
 export const updateModule = async (module: { _id: any; }) => {
   const response = await axios.put(`${MODULES_API}/${module._id}`, module);
-  return response.data;
+  return response?.data;
 };
 
 export const deleteModule = async (moduleId: any) => {
   const response = await axios.delete(`${MODULES_API}/${moduleId}`);
-  return response.data;
+  return response?.data;
 };
 
 export const createModule = async (courseId: any, module: any) => {
@@ -17,10 +17,10 @@ export const createModule = async (courseId: any, module: any) => {
     `${COURSES_API}/${courseId}/modules`,
     module
   );
-  return response.data;
+  return response?.data;
 };
 
 export const findModulesForCourse = async (courseId: any) => {
   const response = await axios.get(`${COURSES_API}/${courseId}/modules`);
-  return response.data;
+  return response?.data;
 };

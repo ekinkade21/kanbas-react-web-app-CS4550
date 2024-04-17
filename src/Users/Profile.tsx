@@ -9,6 +9,9 @@ export default function Profile() {
     const account = await client.profile();
     setProfile(account);
   };
+  const save = async () => {
+    await client.updateUser(profile);
+  };
   useEffect(() => {
     fetchProfile();
   }, []);
@@ -36,6 +39,9 @@ export default function Profile() {
             <option value="FACULTY">Faculty</option>
             <option value="STUDENT">Student</option>
           </select>
+          <button onClick={save}>
+            Save
+          </button>
         </div>
       )}
     </div>

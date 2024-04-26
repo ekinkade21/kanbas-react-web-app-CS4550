@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { BsTrash3Fill, BsPlusCircleFill } from "react-icons/bs";
+import {
+  BsTrash3Fill,
+  BsPlusCircleFill,
+  BsFillPencilFill,
+  BsFillFloppy2Fill,
+} from "react-icons/bs";
 import * as client from "./client";
 import { User } from "./client";
 export default function UserTable() {
   const [users, setUsers] = useState<User[]>([]);
   const [user, setUser] = useState<User>({
-    _id: "", username: "", password: "", firstName: "",
-    lastName: "", role: "USER" });
+    _id: "",
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    role: "USER",
+  });
   const createUser = async () => {
     try {
       const newUser = await client.createUser(user);
@@ -23,11 +33,29 @@ export default function UserTable() {
       console.log(err);
     }
   };
+  const updateUser = async () => {
+    try {
+      await client.updateUser(user);
+      fetchUsers();
+      setUser({
+        _id: "",
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        role: "USER",
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const fetchUsers = async () => {
     const users = await client.findAllUsers();
     setUsers(users);
   };
-  useEffect(() => { fetchUsers(); }, []);
+  useEffect(() => {
+    fetchUsers();
+  }, []);
   return (
     <div>
       <h1>User Table</h1>
@@ -42,22 +70,34 @@ export default function UserTable() {
           </tr>
           <tr>
             <td>
-            <input value={user.username} onChange={(e) =>
-                setUser({ ...user, username: e.target.value })}/>
-              <input value={user.password} onChange={(e) =>
-                setUser({ ...user, password: e.target.value })}/>
+              <input
+                value={user.username}
+                onChange={(e) => setUser({ ...user, username: e.target.value })}
+              />
+              <input
+                value={user.password}
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
+              />
             </td>
             <td>
-              <input value={user.firstName} onChange={(e) =>
-                setUser({ ...user, firstName: e.target.value })}/>
+              <input
+                value={user.firstName}
+                onChange={(e) =>
+                  setUser({ ...user, firstName: e.target.value })
+                }
+              />
             </td>
             <td>
-              <input value={user.lastName} onChange={(e) =>
-                setUser({ ...user, lastName: e.target.value })}/>
+              <input
+                value={user.lastName}
+                onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+              />
             </td>
             <td>
-              <select value={user.role} onChange={(e) =>
-                setUser({ ...user, role: e.target.value })}>
+              <select
+                value={user.role}
+                onChange={(e) => setUser({ ...user, role: e.target.value })}
+              >
                 <option value="USER">User</option>
                 <option value="ADMIN">Admin</option>
                 <option value="FACULTY">Faculty</option>
@@ -65,7 +105,12 @@ export default function UserTable() {
               </select>
             </td>
             <td>
-              <BsPlusCircleFill onClick={createUser}/>
+              <button onClick={createUser}>
+                <BsPlusCircleFill />
+              </button>
+              <button onClick={updateUser}>
+                <BsFillFloppy2Fill />
+              </button>
             </td>
           </tr>
         </thead>
@@ -80,8 +125,12 @@ export default function UserTable() {
                 <button onClick={() => deleteUser(user)}>
                   <BsTrash3Fill />
                 </button>
+                <button onClick={() => setUser(user)}>
+                  <BsFillPencilFill />
+                </button>
               </td>
-              </tr>))}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

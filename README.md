@@ -2,11 +2,11 @@
 Make sure to Navigate to Kanbas heading on the landing page to see the Project
 
 
-## Getting Started with Create React App
+#### Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+#### Available Scripts
 
 In the project directory, you can run:
 

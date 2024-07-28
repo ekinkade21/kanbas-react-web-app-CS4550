@@ -1,5 +1,6 @@
 # IMPORTANT
 Make sure to Navigate to Kanbas heading on the landing page to see the Project
+https://a6--enchanting-chimera-7226c1.netlify.app/
 
 
 #### Getting Started with Create React App
